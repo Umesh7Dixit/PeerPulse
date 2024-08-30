@@ -8,21 +8,10 @@ import postRoutes from "./routes/postRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
 import { v2 as cloudinary } from "cloudinary";
 import { app, server } from "./socket/socket.js";
-import job from "./cron/cron.js";
-import cors from 'cors';
 
 dotenv.config();
 
 connectDB();
-job.start();
-
-app.use(cors({
-    origin: ['*'],
-    // origin: ['*','http://localhost:3000', 'https://peerpulse-with-realtime-chat.onrender.com'],
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
-}));
 
 const PORT = process.env.PORT || 5000;
 const __dirname = path.resolve();
